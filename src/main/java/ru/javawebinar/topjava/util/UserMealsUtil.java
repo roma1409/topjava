@@ -24,21 +24,18 @@ public class UserMealsUtil {
         );
 
         List<UserMealWithExcess> mealsTo = filteredByCycles(meals, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000);
-//        mealsTo.forEach(System.out::println);
+        mealsTo.forEach(System.out::println);
 
-        System.out.println(filteredByStreams(meals, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000));
+//        System.out.println(filteredByStreams(meals, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000));
     }
 
     public static List<UserMealWithExcess> filteredByCycles(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         Map<Integer, Integer> dayToCalories = new HashMap<>();
         for (UserMeal meal : meals) {
             int dayOfMonth = meal.getDateTime().getDayOfMonth();
-            Integer calories = dayToCalories.get(dayOfMonth);
-            if (Objects.isNull(calories)) {
-                calories = meal.getCalories();
-            } else {
-                calories += meal.getCalories();
-            }
+//            Integer calories = dayToCalories.getOrDefault(dayOfMonth, 0);
+//            calories += meal.getCalories();
+            Integer calories = dayToCalories.merge(dayOfMonth, meal.getCalories(), Integer::sum);
             dayToCalories.put(dayOfMonth, calories);
         }
 
