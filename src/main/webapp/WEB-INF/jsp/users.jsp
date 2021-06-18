@@ -4,8 +4,7 @@
     <title>Users</title>
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
-<hr>
+<jsp:include page="header.jsp" />
 <h2>Users</h2>
 </body>
 </html>

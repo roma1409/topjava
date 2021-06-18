@@ -43,6 +43,6 @@ public class MealServlet extends HttpServlet {
         log.debug("forward to meals");
 
         request.setAttribute("mealsTo", mealsTo);
-        request.getRequestDispatcher("/meals.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/meals.jsp").forward(request, response);
     }
 }

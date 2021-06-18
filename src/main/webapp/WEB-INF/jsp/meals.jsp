@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
-<hr>
+<jsp:include page="header.jsp" />
 <h2>Meals</h2>
 <table>
     <tr>
