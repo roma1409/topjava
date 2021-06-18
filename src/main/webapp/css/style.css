@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 table {
     margin: 0 auto;
     font-weight: bold;
@@ -13,10 +17,21 @@ td {
     padding: 10px 20px;
 }
 
+.edit-table {
+    margin: 0;
+}
+
 .excess {
     color: orangered;
 }
 
 .no-excess {
     color: green;
+}
+
+.add-new-link {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    font-weight: bold;
 }
