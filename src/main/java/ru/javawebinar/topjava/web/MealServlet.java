@@ -8,7 +8,6 @@ import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +19,6 @@ import java.util.Objects;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-@WebServlet(urlPatterns = "/meals", loadOnStartup = 0)
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
     private final static int caloriesPerDay = 2_000;
@@ -49,7 +47,8 @@ public class MealServlet extends HttpServlet {
                     break;
                 case "delete":
                     mealDao.delete(Integer.parseInt(id));
-                    break;
+                    response.sendRedirect("meals");
+                    return;
             }
 
             if (Objects.equals("create", action) || Objects.equals("edit", action)) {
