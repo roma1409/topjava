@@ -43,10 +43,8 @@ public class MealsUtil {
 
     public static List<Meal> getFilteredByDate(Collection<Meal> meals, LocalDate startDate, LocalDate endDate) {
         return meals.stream()
-                .filter(meal -> {
-                    LocalDate date = meal.getDateTime().toLocalDate();
-                    return date.isAfter(startDate) && date.isBefore(endDate);
-                }).collect(Collectors.toList());
+                .filter(meal -> DateTimeUtil.isDateBetween(meal.getDateTime().toLocalDate(), startDate, endDate))
+                .collect(Collectors.toList());
     }
 
     public static List<MealTo> filterByPredicate(Collection<Meal> meals, int caloriesPerDay, Predicate<Meal> filter) {

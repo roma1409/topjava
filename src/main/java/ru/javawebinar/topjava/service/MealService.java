@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
-import static ru.javawebinar.topjava.util.MealsUtil.*;
+import static ru.javawebinar.topjava.util.MealsUtil.getFilteredByTimeTos;
+import static ru.javawebinar.topjava.util.MealsUtil.getTos;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -41,8 +42,7 @@ public class MealService {
     }
 
     public List<MealTo> getAllByTimeAndDate(int userId, int caloriesPerDay, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        Collection<Meal> meals = repository.getAll(userId);
-        List<Meal> filteredByDate = getFilteredByDate(meals, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        Collection<Meal> filteredByDate = repository.getFilteredByDateInterval(userId, startDateTime.toLocalDate(), endDateTime.toLocalDate());
         return getFilteredByTimeTos(filteredByDate, caloriesPerDay, startDateTime.toLocalTime(), endDateTime.toLocalTime());
     }
 }

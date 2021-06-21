@@ -9,12 +9,15 @@ import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+
+import static ru.javawebinar.topjava.util.MealsUtil.getFilteredByDate;
 
 @Repository
 public class InMemoryMealRepository implements MealRepository {
@@ -72,6 +75,11 @@ public class InMemoryMealRepository implements MealRepository {
                 .stream()
                 .sorted((o1, o2) -> o1.getDateTime().isAfter(o2.getDateTime()) ? -1 : 0)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Meal> getFilteredByDateInterval(int userId, LocalDate startDate, LocalDate endDate) {
+        return getFilteredByDate(getAll(userId), startDate, endDate);
     }
 
     private Map<Integer, Meal> getUserMeals(int userId) {

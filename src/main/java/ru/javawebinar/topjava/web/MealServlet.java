@@ -24,12 +24,18 @@ public class MealServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(MealServlet.class);
 
     private MealRestController controller;
+    private ConfigurableApplicationContext appCtx;
 
     @Override
     public void init() {
-        try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
-            controller = appCtx.getBean(MealRestController.class);
-        }
+        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        controller = appCtx.getBean(MealRestController.class);
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        appCtx.close();
     }
 
     @Override
@@ -78,7 +84,7 @@ public class MealServlet extends HttpServlet {
             default:
                 log.info("getAll");
                 List<MealTo> mealTos;
-                if (Objects.isNull(startDateStr) || Objects.isNull(endDateStr) || Objects.isNull(startTimeStr) || Objects.isNull(endTimeStr)) {
+                if (checkNullOrEmpty(startDateStr) || checkNullOrEmpty(endDateStr) || checkNullOrEmpty(startTimeStr) || checkNullOrEmpty(endTimeStr)) {
                     mealTos = controller.getAll();
                 } else {
                     LocalDateTime startDateTime = LocalDateTime.of(LocalDate.parse(startDateStr), LocalTime.parse(startTimeStr));
@@ -89,6 +95,10 @@ public class MealServlet extends HttpServlet {
                 request.getRequestDispatcher("/meals.jsp").forward(request, response);
                 break;
         }
+    }
+
+    private boolean checkNullOrEmpty(String str) {
+        return Objects.isNull(str) || str.isEmpty();
     }
 
     private int getId(HttpServletRequest request) {
