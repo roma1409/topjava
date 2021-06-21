@@ -7,5 +7,6 @@
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Users</h2>
+<a href="meals">Show meals of ${param["chosen-user"]} user.</a>
 </body>
 </html>

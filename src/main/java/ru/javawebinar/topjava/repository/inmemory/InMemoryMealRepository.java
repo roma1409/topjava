@@ -30,6 +30,7 @@ public class InMemoryMealRepository implements MealRepository {
     @PostConstruct
     public void init() {
         MealsUtil.meals.forEach(e -> save(1, e));
+        MealsUtil.meals2.forEach(e -> save(2, e));
     }
 
     @Override

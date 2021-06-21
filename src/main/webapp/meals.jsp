@@ -20,6 +20,14 @@
 <section>
     <h3><a href="index.html">Home</a></h3>
     <hr/>
+    <form action="meals" method="get">
+        Дата с <input type="date" name="startDate" value="${param.startDate}" required><br>
+        Дата по <input type="date" name="endDate" value="${param.endDate}" required><br>
+        Время с <input type="time" name="startTime" value="${param.startTime}" required><br>
+        Время по <input type="time" name="endTime" value="${param.endTime}" required><br>
+        <button type="submit">Фильтровать</button>
+    </form>
+    <hr/>
     <h2>Meals</h2>
     <a href="meals?action=create">Add Meal</a>
     <br><br>

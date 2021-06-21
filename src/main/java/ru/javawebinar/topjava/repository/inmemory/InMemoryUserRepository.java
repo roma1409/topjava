@@ -25,7 +25,8 @@ public class InMemoryUserRepository implements UserRepository {
 
     @PostConstruct
     public void init() {
-        save(new User(null, "userName", "email@mail.ru", "password", Role.ADMIN));
+        save(new User(null, "userName1", "email1@mail.ru", "password", Role.ADMIN));
+        save(new User(null, "userName2", "email2@mail.ru", "password", Role.USER));
     }
 
     @Override
