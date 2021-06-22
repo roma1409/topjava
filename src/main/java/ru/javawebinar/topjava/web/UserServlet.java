@@ -14,10 +14,10 @@ public class UserServlet extends HttpServlet {
     private static final Logger log = getLogger(UserServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.debug("forward to users");
-        String chosenUserId = request.getParameter("chosen-user");
+        String chosenUserId = req.getParameter("chosen-user");
         SecurityUtil.setAuthUserId(Integer.parseInt(chosenUserId));
-        request.getRequestDispatcher("/users.jsp").forward(request, response);
+        req.getRequestDispatcher("/users.jsp").forward(req, resp);
     }
 }

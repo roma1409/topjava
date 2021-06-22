@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
@@ -84,12 +85,14 @@ public class MealServlet extends HttpServlet {
             default:
                 log.info("getAll");
                 List<MealTo> mealTos;
-                if (checkNullOrEmpty(startDateStr) || checkNullOrEmpty(endDateStr) || checkNullOrEmpty(startTimeStr) || checkNullOrEmpty(endTimeStr)) {
+                if (checkNullOrEmpty(startDateStr) && checkNullOrEmpty(endDateStr) && checkNullOrEmpty(startTimeStr) && checkNullOrEmpty(endTimeStr)) {
                     mealTos = controller.getAll();
                 } else {
-                    LocalDateTime startDateTime = LocalDateTime.of(LocalDate.parse(startDateStr), LocalTime.parse(startTimeStr));
-                    LocalDateTime endDateTime = LocalDateTime.of(LocalDate.parse(endDateStr), LocalTime.parse(endTimeStr));
-                    mealTos = controller.getAllByTimeAndDate(startDateTime, endDateTime);
+                    LocalDate startDate = parseDateOrNull(startDateStr);
+                    LocalTime startTime = parseTimeOrNull(startTimeStr);
+                    LocalDate endDate = parseDateOrNull(endDateStr);
+                    LocalTime endTime = parseTimeOrNull(endTimeStr);
+                    mealTos = controller.getAllByTimeAndDate(startTime, startDate, endTime, endDate);
                 }
                 request.setAttribute("meals", mealTos);
                 request.getRequestDispatcher("/meals.jsp").forward(request, response);
@@ -99,6 +102,22 @@ public class MealServlet extends HttpServlet {
 
     private boolean checkNullOrEmpty(String str) {
         return Objects.isNull(str) || str.isEmpty();
+    }
+
+    private LocalDate parseDateOrNull(String date) {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    private LocalTime parseTimeOrNull(String date) {
+        try {
+            return LocalTime.parse(date);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 
     private int getId(HttpServletRequest request) {

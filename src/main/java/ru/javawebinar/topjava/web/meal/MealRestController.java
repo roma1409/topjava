@@ -7,7 +7,8 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.to.MealTo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
@@ -56,9 +57,9 @@ public class MealRestController {
         return service.getAll(userId, authUserCaloriesPerDay());
     }
 
-    public List<MealTo> getAllByTimeAndDate(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public List<MealTo> getAllByTimeAndDate(LocalTime startTime, LocalDate startDate, LocalTime endTime, LocalDate endDate) {
         int userId = authUserId();
         log.info("getAllByTime for user with id {}", userId);
-        return service.getAllByTimeAndDate(userId, authUserCaloriesPerDay(), startDateTime, endDateTime);
+        return service.getAllByTimeAndDate(userId, authUserCaloriesPerDay(), startTime, startDate, endTime, endDate);
     }
 }

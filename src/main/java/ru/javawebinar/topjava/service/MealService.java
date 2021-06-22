@@ -5,7 +5,8 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.to.MealTo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class MealService {
         return getTos(repository.getAll(userId), caloriesPerDay);
     }
 
-    public List<MealTo> getAllByTimeAndDate(int userId, int caloriesPerDay, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        Collection<Meal> filteredByDate = repository.getFilteredByDateInterval(userId, startDateTime.toLocalDate(), endDateTime.toLocalDate());
-        return getFilteredByTimeTos(filteredByDate, caloriesPerDay, startDateTime.toLocalTime(), endDateTime.toLocalTime());
+    public List<MealTo> getAllByTimeAndDate(int userId, int caloriesPerDay, LocalTime startTime, LocalDate startDate, LocalTime endTime, LocalDate endDate) {
+        Collection<Meal> filteredByDate = repository.getFilteredByDateInterval(userId, startDate, endDate);
+        return getFilteredByTimeTos(filteredByDate, caloriesPerDay, startTime, endTime);
     }
 }
