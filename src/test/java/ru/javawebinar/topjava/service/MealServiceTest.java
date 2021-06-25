@@ -1,6 +1,5 @@
 package ru.javawebinar.topjava.service;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -43,14 +42,13 @@ public class MealServiceTest {
     @Test
     public void get() {
         Meal meal = service.get(USER_MEAL_1, USER_ID);
-        Assert.assertEquals(meal, MealTestData.userMeal1);
+        assertMatch(meal, MealTestData.userMeal1);
     }
 
     @Test
     public void getNotFound() {
         assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND, USER_ID));
     }
-
 
     @Test
     public void delete() {
@@ -68,20 +66,20 @@ public class MealServiceTest {
         LocalDate startDate = LocalDate.of(2020, Month.JANUARY, 30);
         LocalDate endDate = LocalDate.of(2020, Month.JANUARY, 30);
         List<Meal> all = service.getBetweenInclusive(startDate, endDate, USER_ID);
-        Assert.assertEquals(all, Arrays.asList(userMeal4, userMeal3, userMeal2, userMeal1));
+        assertMatch(all, Arrays.asList(userMeal4, userMeal3, userMeal2, userMeal1));
     }
 
     @Test
     public void getAll() {
         List<Meal> all = service.getAll(ADMIN_ID);
-        Assert.assertEquals(all, Arrays.asList(MealTestData.adminMeal2, MealTestData.adminMeal1));
+        assertMatch(all, Arrays.asList(MealTestData.adminMeal2, MealTestData.adminMeal1));
     }
 
     @Test
     public void update() {
         Meal updated = getUpdated();
         service.update(updated, USER_ID);
-        Assert.assertEquals(service.get(USER_MEAL_1, USER_ID), getUpdated());
+        assertMatch(service.get(USER_MEAL_1, USER_ID), getUpdated());
     }
 
     @Test
@@ -97,8 +95,8 @@ public class MealServiceTest {
         Integer createdMealId = createdMeal.getId();
         Meal newMeal = getNew();
         newMeal.setId(createdMealId);
-        Assert.assertEquals(createdMeal, newMeal);
-        Assert.assertEquals(service.get(createdMealId, USER_ID), newMeal);
+        assertMatch(createdMeal, newMeal);
+        assertMatch(service.get(createdMealId, USER_ID), newMeal);
     }
 
     @Test
