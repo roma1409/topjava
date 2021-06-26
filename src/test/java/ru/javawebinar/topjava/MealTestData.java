@@ -23,7 +23,7 @@ public class MealTestData {
     public static final Meal userMeal1 = new Meal(USER_MEAL_1, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500);
     public static final Meal userMeal2 = new Meal(USER_MEAL_2, LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000);
     public static final Meal userMeal3 = new Meal(USER_MEAL_3, LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500);
-    public static final Meal userMeal4 = new Meal(USER_MEAL_4, LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на пограничное значение", 100);
+    public static final Meal userMeal4 = new Meal(USER_MEAL_4, LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100);
     public static final Meal userMeal5 = new Meal(USER_MEAL_5, LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000);
     public static final Meal userMeal6 = new Meal(USER_MEAL_6, LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500);
     public static final Meal userMeal7 = new Meal(USER_MEAL_7, LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410);
@@ -47,6 +47,6 @@ public class MealTestData {
     }
 
     public static void assertMatch(Iterable<Meal> actual, Iterable<Meal> expected) {
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 }
