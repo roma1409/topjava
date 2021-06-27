@@ -1,4 +1,7 @@
-Java Enterprise Online Project 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8aaa37891f88485ebd43b62e6a9f532d)](https://www.codacy.com/gh/roma1409/topjava/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=roma1409/topjava&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.com/roma1409/topjava.svg?branch=master)](https://travis-ci.com/roma1409/topjava)
+
+Java Enterprise Online Project
 ===============================
 Разработка полнофункционального Spring/JPA Enterprise приложения c авторизацией и правами доступа на основе ролей с использованием наиболее популярных инструментов и технологий Java: Maven, Spring MVC, Security, JPA(Hibernate), REST(Jackson), Bootstrap (css,js), datatables, jQuery + plugins, Java 8 Stream and Time API и хранением в базах данных Postgresql и HSQLDB.
 
@@ -32,9 +35,9 @@ Java Enterprise Online Project
 ## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 2. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFSUNrdVc0bDZuX2s">Системы управления версиями. Git.</a>
 -  **<a href="https://github.com/JavaOPs/topjava/wiki/Git">Wiki по ведению проекта в Git</a>**
 -  <a href="http://ru.wikipedia.org/wiki/Система_управления_версиями">Система управления версиями</a>. <a href="http://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%D0%BC%D0%B8#.D0.A0.D0.B0.D1.81.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D1.91.D0.BD.D0.BD.D1.8B.D0.B5_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D1.8B_.D1.83.D0.BF.D1.80.D0.B0.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B2.D0.B5.D1.80.D1.81.D0.B8.D1.8F.D0.BC.D0.B8">VCS/DVSC</a>.
--  Ресурсы:            
+-  Ресурсы:
     -  <a href="https://try.github.io/levels/1/challenges/1">Интерактивная Git обучалка</a>
-    -  <a href="http://learngitbranching.js.org/">Еще одна интерактивная обучалка, по-русски</a>    
+    -  <a href="http://learngitbranching.js.org/">Еще одна интерактивная обучалка, по-русски</a>
     -  <a href="https://git-scm.com/book/ru/v2">Книга Git</a>
     -  <a href="https://illustrated-git.readthedocs.org/en/latest/#working-with-remote-repositories">Working with remote repositories</a>
     -  <a href="https://www.youtube.com/playlist?list=PLIU76b8Cjem5B3sufBJ_KFTpKkMEvaTQR">Видео по обучению Git</a>
@@ -53,12 +56,12 @@ Java Enterprise Online Project
 
 ### Патч [prepare_to_HW0.patch](https://drive.google.com/file/d/1LNPpu9OkuCpfpD8ZJHO-o0vwu49p2i5M) (скачать и положить в каталог вашего проекта)
 
-> Проект постоянно улучшается, поэтому видео иногда отличается от кода проекта. Изменения указываю после видео: 
+> Проект постоянно улучшается, поэтому видео иногда отличается от кода проекта. Изменения указываю после видео:
 > - переименовал класс `UserMealWithExceed` и его поле `exceed` в `UserMealWithExcess.excess`
 > - в `UserMeals/UserMealWithExcess` поля изменились на `private`
 > - обновил данные `UserMealsUtil.meals` и переименовал некоторые пременные, поля и методы
 > - добавил `UserMealWithExcess.toString()` и метод для выполнения _Optional домашнего задания_
-> - метод фильтрации в `TimeUtil` переименовали в `isBetweenHalfOpen` (также изменилась логика сравнения - `startTime` включается в интервал) 
+> - метод фильтрации в `TimeUtil` переименовали в `isBetweenHalfOpen` (также изменилась логика сравнения - `startTime` включается в интервал)
 
 ##  Инструкция по шагам (из видео):</h3>
 -  <a href="http://javaops.ru/view/soft">Установить ПО (git, JDK8, IntelliJ IDEA, Maven)</a>
@@ -108,7 +111,7 @@ Java Enterprise Online Project
 -  <a href="https://devcolibri.com/java-8-killer-features-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1/">Java 8: Lambda выражения</a>
 -  <a href="https://devcolibri.com/java-8-killer-features-%D1%87%D0%B0%D1%81%D1%82%D1%8C-2/">Java 8: Потоки</a>
 -  <a href="https://javadevblog.com/polnoe-rukovodstvo-po-java-8-stream.html">Pуководство по Java 8 Stream</a>
--  [Полное руководство по Java 8 Stream API в картинках и примерах](https://annimon.com/article/2778)    
+-  [Полное руководство по Java 8 Stream API в картинках и примерах](https://annimon.com/article/2778)
 -  [7 способов использовать groupingBy в Stream API](https://habrahabr.ru/post/348536)
 -  <a href="http://habrahabr.ru/post/224593/">Лямбда-выражения в Java 8</a>
 -  <a href="https://github.com/winterbe/java8-tutorial">A Guide to Java 8</a>
@@ -129,7 +132,7 @@ Java Enterprise Online Project
   - нельзя использовать внешние коллекции, не являющиеся частью коллектора
   - нельзя 2 раза проходить по исходному списку (в том числе его отфильтрованной или преобразованной копии)
   - возможно дополнительные проходы по частям списка, при этом превышение должно считаться один раз для всего подсписка. Те например нельзя разбить список на на 2 подсписка с четными и нечетными датами и затем их объединить, с подсчетом превышения для каждого элемента.
- 
+
 
 Ресурсы:
 - [Java 8 Stream API, часть шестая: собственный коллектор](https://easyjava.ru/java/language/java-8-stream-api-chast-shestaya-sobstvennyj-kollektor)
@@ -138,14 +141,14 @@ Java Enterprise Online Project
 ### Замечания по использованию Stream API:
 - Когда встречаешь что-то непривычное, приходится перестраивать мозги. Например, переход с процедурного на ООП программирование дается непросто. Те, кто не знает шаблонов (и не хотят учить) также их встречают плохо. Хорошая новость в том, что если это принять и начать использовать, то начинаешь получать от этого удовольствие. И тут главное не впасть в другую крайность:
   - [Используйте Stream API проще (или не используйте вообще)](https://habrahabr.ru/post/337350/)
-- Если вас беспокоить производительность стримов, обязательно прочитайте про оптимизацию 
+- Если вас беспокоить производительность стримов, обязательно прочитайте про оптимизацию
     - ["Что? Где? Когда?"](http://optimization.guide/intro.html)
     - [Перформанс: что в имени тебе моём?](https://habrahabr.ru/company/jugru/blog/338732/)
     - [Performance это праздник](https://habrahabr.ru/post/326242/)
-    
+
 При использовании Stream API производительность улучшиться только на больших задачах, где возможно распараллеливание.
 Еще - просто так запустить и померять скорость JVM нельзя (как минимум дать прогреться и запустить очень большое число раз). Лучше использовать какие-нибудь бенчмарки, например [JMH](http://tutorials.jenkov.com/java-performance/jmh.html), который мы юзаем на другом проекте (Mastejava).
-  
+
 ## ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Замечания к HW0
 - 1: Код проекта менять можно! Одна из распространенных ошибок как в тестовых заданиях на собеседовании, так и при работе на проекте, что ничего нельзя менять. Конечно при правках в рабочем проекте обязательно нужно проконсультироваться/проревьюироваться у авторов кода (находится по истории VCS)
 - 2: Наследовать `UserMealWithExcess` от `UserMeal` нельзя, т.к. это разные сущности: Transfer Object и Entity. Мы будет их проходить на 2м уроке. Это относится и к зависимости.
@@ -170,7 +173,7 @@ Java Enterprise Online Project
 
 Все остальное - опционально.
 
-#### HTML, JavaScript, CSS 
+#### HTML, JavaScript, CSS
 - [Basic HTML and HTML5](https://learn.freecodecamp.org/responsive-web-design/basic-html-and-html5/say-hello-to-html-elements/)
 - [Справочник по WEB](https://developer.mozilla.org/ru/)
 - [Видео по WEB технологиям](https://www.youtube.com/user/WebMagistersRu/playlists)
