@@ -1,6 +1,15 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8aaa37891f88485ebd43b62e6a9f532d)](https://www.codacy.com/gh/roma1409/topjava/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=roma1409/topjava&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/roma1409/topjava.svg?branch=master)](https://travis-ci.com/roma1409/topjava)
 
+#### Начало выполнения [выпускного проекта](https://github.com/JavaOPs/topjava/blob/master/graduation.md)
+
+### 01.07: 5-е занятие
+- Обзор JDK 9/11. Миграция Topjava с 1.8 на 11
+- Обзор JDK 9/16. Миграция Topjava с 1.8 на 16
+- Разбор вопросов
+- Разбор домашнего задания HW4 + Optional
+- Транзакции
+
 Java Enterprise Online Project
 ===============================
 Разработка полнофункционального Spring/JPA Enterprise приложения c авторизацией и правами доступа на основе ролей с использованием наиболее популярных инструментов и технологий Java: Maven, Spring MVC, Security, JPA(Hibernate), REST(Jackson), Bootstrap (css,js), datatables, jQuery + plugins, Java 8 Stream and Time API и хранением в базах данных Postgresql и HSQLDB.
