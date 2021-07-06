@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava.repository.datajpa;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 
@@ -50,5 +51,15 @@ public class DataJpaMealRepository implements MealRepository {
                 .stream()
                 .filter(meal -> meal.getDateTime().compareTo(endDateTime) < 0)
                 .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Meal getWithUser(int id, int userId) {
+        Meal meal = get(id, userId);
+        if (Objects.nonNull(meal)) {
+            meal.getUser().getPassword();
+        }
+        return meal;
     }
 }

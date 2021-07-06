@@ -10,6 +10,7 @@ import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;
@@ -17,7 +18,7 @@ import static ru.javawebinar.topjava.UserTestData.*;
 
 public abstract class AbstractUserServiceTest extends AbstractLogTest {
     @Autowired
-    private UserService service;
+    protected UserService service;
 
     @Autowired
     private CacheManager cacheManager;
@@ -33,14 +34,14 @@ public abstract class AbstractUserServiceTest extends AbstractLogTest {
         int newId = created.id();
         User newUser = getNew();
         newUser.setId(newId);
-        MATCHER.assertMatch(created, newUser);
-        MATCHER.assertMatch(service.get(newId), newUser);
+        USER_MATCHER.assertMatch(created, newUser);
+        USER_MATCHER.assertMatch(service.get(newId), newUser);
     }
 
     @Test
     public void duplicateMailCreate() {
         assertThrows(DataAccessException.class, () ->
-                service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.USER)));
+                service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Collections.singletonList(Role.USER), Collections.emptySet())));
     }
 
     @Test
@@ -57,7 +58,7 @@ public abstract class AbstractUserServiceTest extends AbstractLogTest {
     @Test
     public void get() {
         User user = service.get(USER_ID);
-        MATCHER.assertMatch(user, UserTestData.user);
+        USER_MATCHER.assertMatch(user, UserTestData.user);
     }
 
     @Test
@@ -68,19 +69,19 @@ public abstract class AbstractUserServiceTest extends AbstractLogTest {
     @Test
     public void getByEmail() {
         User user = service.getByEmail("admin@gmail.com");
-        MATCHER.assertMatch(user, admin);
+        USER_MATCHER.assertMatch(user, admin);
     }
 
     @Test
     public void update() {
         User updated = getUpdated();
         service.update(updated);
-        MATCHER.assertMatch(service.get(USER_ID), getUpdated());
+        USER_MATCHER.assertMatch(service.get(USER_ID), getUpdated());
     }
 
     @Test
     public void getAll() {
         List<User> all = service.getAll();
-        MATCHER.assertMatch(all, admin, user);
+        USER_MATCHER.assertMatch(all, admin, user);
     }
 }
