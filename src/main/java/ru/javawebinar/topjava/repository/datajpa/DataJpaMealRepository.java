@@ -3,6 +3,7 @@ package ru.javawebinar.topjava.repository.datajpa;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.MealRepository;
 
 import java.time.LocalDateTime;
@@ -47,18 +48,16 @@ public class DataJpaMealRepository implements MealRepository {
 
     @Override
     public List<Meal> getBetweenHalfOpen(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        return mealRepository.findAllByUserIdAndDateTimeBetweenOrderByDateTimeDesc(userId, startDateTime, endDateTime)
-                .stream()
-                .filter(meal -> meal.getDateTime().compareTo(endDateTime) < 0)
-                .toList();
+        return mealRepository.findAllSortedAndBetweenDate(userId, startDateTime, endDateTime);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Meal getWithUser(int id, int userId) {
+        User user = userRepository.findById(userId).orElse(null);
         Meal meal = get(id, userId);
         if (Objects.nonNull(meal)) {
-            meal.getUser().getPassword();
+            meal.setUser(user);
         }
         return meal;
     }

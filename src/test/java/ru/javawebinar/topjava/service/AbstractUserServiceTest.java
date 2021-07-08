@@ -10,7 +10,6 @@ import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;
@@ -41,7 +40,7 @@ public abstract class AbstractUserServiceTest extends AbstractLogTest {
     @Test
     public void duplicateMailCreate() {
         assertThrows(DataAccessException.class, () ->
-                service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Collections.singletonList(Role.USER), Collections.emptySet())));
+                service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.USER)));
     }
 
     @Test
