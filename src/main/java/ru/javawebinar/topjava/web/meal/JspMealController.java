@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
 import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
@@ -31,7 +32,8 @@ public class JspMealController extends AbstractMealController {
     }
 
     @GetMapping("/filter")
-    public String getFilteredMeals(Model model, @RequestParam(required = false) String startDate, @RequestParam(required = false) String endDate, @RequestParam(required = false) String startTime, @RequestParam(required = false) String endTime) {
+    public String getFilteredMeals(Model model, @RequestParam(required = false) String startDate, @RequestParam(required = false) String endDate,
+                                   @RequestParam(required = false) String startTime, @RequestParam(required = false) String endTime) {
         LocalDate parsedStartDate = parseLocalDate(startDate);
         LocalDate parsedEndDate = parseLocalDate(endDate);
         LocalTime parsedStartTime = parseLocalTime(startTime);
@@ -40,16 +42,9 @@ public class JspMealController extends AbstractMealController {
         return "meals";
     }
 
-    @GetMapping("/create")
-    public String showCreationForm(Model model) {
-        final Meal meal = new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000);
-        model.addAttribute("meal", meal);
-        return "mealForm";
-    }
-
-    @GetMapping("/update")
-    public String showUpdatingForm(Model model, @RequestParam Integer id) {
-        final Meal meal = super.get(id);
+    @GetMapping("/form")
+    public String showForm(Model model, @RequestParam(required = false) Integer id) {
+        Meal meal = Objects.nonNull(id) ? super.get(id) : new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000);
         model.addAttribute("meal", meal);
         return "mealForm";
     }
@@ -68,7 +63,8 @@ public class JspMealController extends AbstractMealController {
     }
 
     @PostMapping("/update")
-    public String update(@RequestParam String dateTime, @RequestParam String description, @RequestParam Integer calories, @RequestParam Integer id) {
+    public String update(@RequestParam String dateTime, @RequestParam String description, @RequestParam Integer calories,
+                         @RequestParam Integer id) {
         Meal meal = new Meal(LocalDateTime.parse(dateTime), description, calories);
         super.update(meal, id);
         return "redirect:/meals";

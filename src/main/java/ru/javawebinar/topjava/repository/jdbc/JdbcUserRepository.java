@@ -129,8 +129,7 @@ public class JdbcUserRepository implements UserRepository {
         jdbcTemplate.query("SELECT * FROM user_roles", (resultSet, i) -> {
             int userId = resultSet.getInt("user_id");
             Role role = Role.valueOf(resultSet.getString("role"));
-            userIdToRoles.putIfAbsent(userId, new ArrayList<>());
-            userIdToRoles.get(userId).add(role);
+            userIdToRoles.computeIfAbsent(userId, key -> new ArrayList<>()).add(role);
             return null;
         });
         return userIdToRoles;
